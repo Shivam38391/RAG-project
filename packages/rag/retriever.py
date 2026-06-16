@@ -13,4 +13,8 @@ from packages.rag.vector_store import db
 
 
 def retrieve(query: str, k: int = 4):
-    return db.similarity_search(query, k=k)
+    docs = db.similarity_search(query, k=k)
+
+    print(f"Retrieved {len(docs)} docs")
+
+    return docs

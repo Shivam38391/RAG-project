@@ -35,11 +35,26 @@
 
 
 
+import time
 from packages.rag.retriever import retrieve
 from packages.llm.ollama_client import llm
 
 
 def ask(question: str):
+
+
+    
+    start = time.time()
+
+
+
+
+
+    docs = retrieve(question)
+
+    context = "\n\n".join(
+        [doc.page_content for doc in docs]
+    )
 
 
     prompt = f"""
@@ -59,15 +74,14 @@ def ask(question: str):
     {question}
     """
 
+    
+    llm_start = time.time()
 
-
-    docs = retrieve(question)
-
-    context = "\n\n".join(
-        [doc.page_content for doc in docs]
-    )
 
     response = llm.invoke(prompt)
+
+    print(f"LLM: {time.time() - llm_start:.2f}s")
+    print(f"Total: {time.time() - start:.2f}s")
 
     return {
         "answer": response.content,
