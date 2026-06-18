@@ -14,6 +14,4 @@ def chat(request: ChatRequest):
 
     answer = ask(request.question)
 
-    return {
-        "answer": answer
-    }
+    return answer

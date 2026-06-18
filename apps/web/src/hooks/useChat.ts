@@ -48,7 +48,7 @@ export function useChat(options?: UseChatOptions) {
         const assistantMessage: Message = {
           id: `assistant-${Date.now()}`,
           role: "assistant",
-          content: response.message,
+          content: response.answer,
           timestamp: new Date().toISOString(),
           sources: response.sources,
         };
