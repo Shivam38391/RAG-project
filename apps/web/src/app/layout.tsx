@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 
 
@@ -42,6 +43,9 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TooltipProvider>
             {children}
+
+                    <Toaster />
+
           </TooltipProvider>
         </ThemeProvider>
       </body>
