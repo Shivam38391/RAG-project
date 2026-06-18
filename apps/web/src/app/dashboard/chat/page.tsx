@@ -12,7 +12,7 @@ export default function ChatContent() {
   const { messages, isLoading, sendMessage, clearMessages, messagesEndRef, scrollToBottom } =
     useChat();
 
-  // Auto-scroll on new messages
+  // Auto-scroll on new messagez̤
   useEffect(() => {
     scrollToBottom();
   }, [messages, scrollToBottom]);
