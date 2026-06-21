@@ -42,13 +42,7 @@ from packages.llm.ollama_client import llm
 
 def ask(question: str):
 
-
-    
     start = time.time()
-
-
-
-
 
     docs = retrieve(question)
 

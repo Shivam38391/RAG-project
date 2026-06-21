@@ -3,6 +3,11 @@ from langchain_ollama import ChatOllama
 
 llm = ChatOllama(
     model="qwen3.5:latest",
-        temperature=0
+
+
+    # model="qwen3:4b",
+
+         temperature=0,
+    keep_alive="30m",
 
 )

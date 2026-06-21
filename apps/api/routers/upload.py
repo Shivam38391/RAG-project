@@ -1,5 +1,5 @@
 from pathlib import Path
-from apps.services.ingestion_service import ingest_pdf
+from apps.api.services.ingestion_service import ingest_pdf
 from fastapi import APIRouter, UploadFile, File
 
 router = APIRouter()

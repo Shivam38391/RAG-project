@@ -2,15 +2,37 @@ from fastapi import FastAPI
 from apps.api.routers.upload import router as upload_router
 from fastapi.middleware.cors import CORSMiddleware
 from apps.api.routers.chat import router as chat_router
+from apps.api.db.database import Base, engine
+from apps.api.db.models import Base
+from apps.api.routers.conversations import (
+    router as conversation_router,
+)
+from apps.api.routers.messages import router as message_router
+from contextlib import asynccontextmanager
+from packages.llm.ollama_client import llm
+
+
+Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI(
     title="Financial AI Assistant"
 )
 
+
+@asynccontextmanager
+async def lifespan(app):
+    print("Loading model...")
+    llm.invoke("hi")
+    print("Model ready.")
+    yield
+app = FastAPI(lifespan=lifespan)
+
+
 app.include_router(chat_router)
 app.include_router(upload_router)
-
-
+app.include_router(conversation_router)
+app.include_router(message_router)
 
 @app.get("/")
 def root():
@@ -30,3 +52,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+
