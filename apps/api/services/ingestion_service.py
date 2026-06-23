@@ -7,6 +7,8 @@ def ingest_pdf(path: str):
 
     docs = load_pdf(path)
 
+    print(path, "loaded with", len(docs), "pages")
+
     chunks = split_documents(docs)
 
     print(f"Adding {len(chunks)} chunks to DB...")

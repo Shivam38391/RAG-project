@@ -46,3 +46,10 @@ export interface AppSettings {
   ollamaModel: string;
   theme: "light" | "dark" | "system";
 }
+
+
+export interface conversations {
+  id: string;
+  title: string;
+  created_at: string;
+}
