@@ -170,7 +170,7 @@ export function useChat(options?: UseChatOptions) {
         const request: ChatRequest = {
           question: query,
           // Include your conversation_id if your backend handles chaining existing sessions
-          // conversation_id: conversationId, 
+          conversation_id: conversationId, 
           // documentIds: options?.documentIds,
         };
 

@@ -64,7 +64,7 @@ const data = {
           url: "/dashboard",
         },
         {
-          title: "chat",
+          title: "New Chat",
           url: "/dashboard/chat",
         },
 

@@ -25,7 +25,9 @@ export interface Source {
 
 export interface ChatRequest {
   question: string;
-//   documentIds?: string[];
+  conversation_id: string; // Include your conversation_id if your backend handles chaining existing sessions,
+
+  //   documentIds?: string[];
 }
 
 export interface ChatResponse {
@@ -46,7 +48,6 @@ export interface AppSettings {
   ollamaModel: string;
   theme: "light" | "dark" | "system";
 }
-
 
 export interface conversations {
   id: string;

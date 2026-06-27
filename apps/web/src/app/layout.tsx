@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import ReactQueryProvider from "@/hooks/ReactQueryProvider";
 
 
 
@@ -40,14 +41,22 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="h-full bg-background text-foreground">
+
+<ReactQueryProvider>
+
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TooltipProvider>
             {children}
 
                     <Toaster />
 
+
+
           </TooltipProvider>
         </ThemeProvider>
+
+  </ReactQueryProvider>
+
       </body>
     </html>
   );
