@@ -8,11 +8,14 @@ from apps.api.db.database import get_db
 
 from apps.api.schemas.conversation import (
     ConversationCreate,
+    ConversationCreateV2,
     ConversationResponse,
+    ConversationResponseV2,
 )
 
 from apps.api.services.conversation_service import (
     ConversationService,
+    ConversationServiceV2,
 )
 
 router = APIRouter(
@@ -88,3 +91,39 @@ def delete_conversation(
         "message": "Deleted",
         "id": conversation_id
     }
+
+
+
+
+
+
+
+
+
+
+# =======version2======
+
+
+@router.post("/conversations/V2")
+def create_conversation(
+    request: ConversationCreateV2,
+    db: Session = Depends(get_db),
+):
+    return ConversationServiceV2.create_conversation(
+        db=db,
+        workspace_id=request.workspace_id,
+        title=request.title,
+    )
+
+
+@router.get(
+    "/workspaces/V2/{workspace_id}/conversations"
+)
+def get_conversations(
+    workspace_id: int,
+    db: Session = Depends(get_db),
+):
+    return ConversationServiceV2.get_conversations(
+        db=db,
+        workspace_id=workspace_id,
+    )

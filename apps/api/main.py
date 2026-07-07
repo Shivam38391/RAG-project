@@ -11,6 +11,9 @@ from apps.api.routers.messages import router as message_router
 from contextlib import asynccontextmanager
 from packages.llm.ollama_client import llm
 
+from apps.api.routers.workspaces import (
+    router as workspace_router
+)
 
 Base.metadata.create_all(bind=engine)
 
@@ -33,6 +36,10 @@ app.include_router(chat_router)
 app.include_router(upload_router)
 app.include_router(conversation_router)
 app.include_router(message_router)
+
+app.include_router(
+    workspace_router
+)
 
 @app.get("/")
 def root():

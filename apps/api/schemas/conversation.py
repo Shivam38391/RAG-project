@@ -13,3 +13,20 @@ class ConversationResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+
+
+
+class ConversationCreateV2(BaseModel):
+    workspace_id: int
+    title: str
+
+
+class ConversationResponseV2(BaseModel):
+    id: int
+    workspace_id: int
+    title: str
+
+    class Config:
+        from_attributes = True
