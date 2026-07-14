@@ -1,9 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { conversations as ConversationType } from "@/types"
+import { conversations as ConversationType, workSpace } from "@/types"
 import { api } from "@/lib/api"
 import { NavConversations } from "./NavConversations"
+import { useQuery } from "@tanstack/react-query"
 
 export function SidebarHistoryWrapper() {
   const [conversations, setConversations] = useState<ConversationType[]>([])
@@ -26,6 +27,23 @@ export function SidebarHistoryWrapper() {
 
     fetchHistory()
   }, [])
+
+
+  const { isPending ,  isError , data } =  useQuery<workSpace[]>(
+    {
+     queryKey: ["getWorkspace"],
+
+     queryFn: api.getWorkspace.bind(api)
+     },
+    
+    
+    
+  ) 
+
+
+  console.log("isPending", isPending)
+  console.log("isError", isError)
+  console.log("data", data)
 
   if (isLoading) {
     return (

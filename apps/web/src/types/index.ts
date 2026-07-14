@@ -17,6 +17,7 @@ export interface Message {
 }
 
 export interface Source {
+  creator: string;
   documentId: string;
   filename: string;
   pageNumber?: number;
@@ -30,7 +31,7 @@ export interface ChatRequest {
   //   documentIds?: string[];
 }
 
-export interface ChatResponse {
+export interface xChatResponse {
   answer: string;
   sources: Source[];
 }
@@ -42,6 +43,13 @@ export interface UploadResponse {
   status: "indexed" | "processing";
 }
 
+
+export interface workSpace {
+  id: string;
+  name: string;
+}
+
+
 // Settings types
 export interface AppSettings {
   backendUrl: string;
@@ -52,5 +60,5 @@ export interface AppSettings {
 export interface conversations {
   id: string;
   title: string;
-  created_at: string;
+  created_at?: string;
 }

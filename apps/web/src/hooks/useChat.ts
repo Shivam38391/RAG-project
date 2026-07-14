@@ -174,7 +174,15 @@ export function useChat(options?: UseChatOptions) {
           // documentIds: options?.documentIds,
         };
 
-        const response = await api.askQuestion(request);
+
+//old api call
+        // const response = await api.askQuestion(request);
+
+
+        const response = await api.conversationChat({
+          conversationId,
+          question: query
+        });
 
         // Add assistant response
         const assistantMessage: Message = {

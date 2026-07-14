@@ -4,8 +4,7 @@ import { ThemeProvider } from "next-themes";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import ReactQueryProvider from "@/hooks/ReactQueryProvider";
-
+import  ReactQueryProvider  from "@/components/ReactQueryProvider";
 
 
 const geistSans = Geist({

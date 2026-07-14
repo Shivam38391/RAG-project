@@ -14,7 +14,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { GalleryVerticalEndIcon, AudioLinesIcon, TerminalIcon, TerminalSquareIcon, BotIcon, BookOpenIcon, Settings2Icon, FrameIcon, PieChartIcon, MapIcon } from "lucide-react"
-import { SidebarHistoryWrapper } from "./SidebarHistoryWrapper"
+// import { SidebarHistoryWrapper } from "./SidebarHistoryWrapper"
+import { NavWorkspaces } from "./NavWorkspaces"
 
 // This is sample data.
 const data = {
@@ -162,7 +163,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
         {/* <NavProjects projects={data.projects} /> */}
 
-        <SidebarHistoryWrapper />
+        {/* <SidebarHistoryWrapper /> */}
+
+        <NavWorkspaces />
       </SidebarContent>
       <SidebarFooter>
         {/* <NavUser user={data.user} /> */}
