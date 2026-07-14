@@ -6,7 +6,7 @@ from apps.api.services.workspace_document_service import WorkspaceDocumentServic
 
 from apps.api.repositories.conversation_repository import ConversationRepository
 
-from packages.rag.retriever import retrieve
+from packages.rag.retrieverV2 import retrieve
 from packages.rag.prompt_builder import build_prompt
 from packages.llm.llm_service import LLMService
 
@@ -28,6 +28,8 @@ class ChatService:
             db=db,
             conversation_id=conversation_id,
         )
+
+        print(f"Conversation: {conversation.id}, Workspace: {conversation.workspace_id}")
 
         if conversation is None:
             raise Exception("Conversation not found")
@@ -54,6 +56,9 @@ class ChatService:
             conversation_id=conversation_id,
         )
 
+        messages = messages[-8:]
+
+
         history = "\n".join(
             f"{message.role}: {message.content}"
             for message in messages
@@ -69,6 +74,7 @@ class ChatService:
                 workspace_id=workspace_id,
             )
         )
+        print(f"Document IDs: {document_ids}")
 
         # -------------------------
         # Retrieve Chunks
@@ -112,7 +118,10 @@ class ChatService:
         # -------------------------
 
         context = "\n\n".join(
-            doc.page_content
+
+            doc.page_content[:800]
+
+            # doc.page_content
             for doc in docs
         )
 
@@ -132,6 +141,12 @@ class ChatService:
 
         llm_start = time.time()
 
+        print("=" * 60)
+        print(f"History chars : {len(history)}")
+        print(f"Context chars : {len(context)}")
+        print(f"Prompt chars  : {len(prompt)}")
+        print("=" * 60)
+
         answer = LLMService.generate(prompt)
 
         print(
@@ -148,6 +163,23 @@ class ChatService:
             role="assistant",
             content=answer,
         )
+
+
+        # Debug retrieved chunks
+        print("=" * 80)
+        print("Retrieved Chunks")
+        print("=" * 80)
+
+        for i, doc in enumerate(docs):
+            print(f"\nChunk {i}")
+            print("-" * 40)
+            print(doc.page_content)
+            print("\nMetadata:")
+            print(doc.metadata)
+
+
+
+
 
         return {
             "answer": answer,

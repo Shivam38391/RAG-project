@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from apps.api.routers.upload import router as upload_router
 from fastapi.middleware.cors import CORSMiddleware
 from apps.api.routers.chat import router as chat_router
+from apps.api.routers.chatrouter import router as chat_routerV2
+
 from apps.api.db.database import Base, engine
 from apps.api.db.models import Base
 from apps.api.routers.conversations import (
@@ -33,6 +35,12 @@ app = FastAPI(lifespan=lifespan)
 
 
 app.include_router(chat_router)
+
+app.include_router(chat_routerV2)
+
+
+
+
 app.include_router(upload_router)
 app.include_router(conversation_router)
 app.include_router(message_router)
