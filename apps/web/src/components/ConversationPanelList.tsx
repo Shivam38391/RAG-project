@@ -5,6 +5,7 @@ import { MessageSquare, Plus, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { api } from "@/lib/api"
+import { useRouter } from "next/navigation"
 
 // Import your actual backend type directly
 import type { conversations as ConversationType } from "@/types"
@@ -16,6 +17,10 @@ interface UIConversation extends ConversationType {
 }
 
 export default function ConversationPanelList({ currentId }: { currentId?: string | number }) {
+
+
+    const router = useRouter()
+
   // Pass your official type down to useQuery to match the backend function return signature
   const { isPending, isError, data: conversations } = useQuery<ConversationType[]>({
     queryKey: ["getConversations"],
@@ -33,7 +38,10 @@ export default function ConversationPanelList({ currentId }: { currentId?: strin
       {/* Panel Header */}
       <div className="flex items-center justify-between px-4 py-3">
         <h3 className="text-sm font-semibold text-foreground">Conversations</h3>
-        <Button size="icon" variant="ghost" className="h-7 w-7 rounded-md text-primary bg-primary/10 hover:bg-primary/20">
+        <Button 
+        onClick={() => router.push("/dashboard/chat/new")}
+        
+        size="icon" variant="ghost" className="h-7 w-7 rounded-md text-primary bg-primary/10 hover:bg-primary/20">
           <Plus className="h-4 w-4" />
         </Button>
       </div>

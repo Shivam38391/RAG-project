@@ -16,6 +16,8 @@ import {
 import { GalleryVerticalEndIcon, AudioLinesIcon, TerminalIcon, TerminalSquareIcon, BotIcon, BookOpenIcon, Settings2Icon, FrameIcon, PieChartIcon, MapIcon } from "lucide-react"
 // import { SidebarHistoryWrapper } from "./SidebarHistoryWrapper"
 import { NavWorkspaces } from "./NavWorkspaces"
+import { CreateWorkspaceModal } from "./CreateWorkspaceModal"
+import { Separator } from "./ui/separator"
 
 // This is sample data.
 const data = {
@@ -164,6 +166,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {/* <NavProjects projects={data.projects} /> */}
 
         {/* <SidebarHistoryWrapper /> */}
+
+
+
+        <CreateWorkspaceModal />
+
+        <Separator className="my-2" />
 
         <NavWorkspaces />
       </SidebarContent>

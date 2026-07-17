@@ -117,13 +117,25 @@ class ChatService:
         # Context
         # -------------------------
 
-        context = "\n\n".join(
+        # context = "\n\n".join(
 
-            doc.page_content[:800]
+        #     doc.page_content[:800]
 
-            # doc.page_content
-            for doc in docs
-        )
+        #     # doc.page_content
+        #     for doc in docs
+        # )
+
+
+
+        seen = set()
+        context_parts = []
+
+        for doc in docs:
+            if doc.page_content not in seen:
+                seen.add(doc.page_content)
+                context_parts.append(doc.page_content)
+
+        context = "\n\n".join(context_parts)
 
         # -------------------------
         # Prompt
@@ -163,6 +175,8 @@ class ChatService:
             role="assistant",
             content=answer,
         )
+
+        print(f"MessageService: {answer}")
 
 
         # Debug retrieved chunks

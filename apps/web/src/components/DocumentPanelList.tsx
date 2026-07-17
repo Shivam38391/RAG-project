@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { api } from "@/lib/api"
+import { UploadDocumentModal } from "./UploadDocumentModal"
 
 // Interface matching your backend response payload
 interface WorkspaceDocument {
@@ -35,9 +36,7 @@ export function DocumentPanelList({ workspaceId }: DocumentPanelListProps) {
       {/* Panel Header */}
       <div className="flex items-center justify-between px-4 py-3">
         <h3 className="text-sm font-semibold text-foreground">Documents</h3>
-        <Button size="icon" variant="ghost" className="h-7 w-7 rounded-md text-muted-foreground hover:bg-muted">
-          <Plus className="h-4 w-4" />
-        </Button>
+       <UploadDocumentModal workspaceId={workspaceId} />
       </div>
 
       {/* Documents Item Cards List */}

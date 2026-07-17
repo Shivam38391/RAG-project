@@ -42,16 +42,7 @@ const Page = ({ params }: PageProps) => {
   }, [messages, scrollToBottom]);
 
   return (
-< main className="flex flex-1 h-[calc(100vh-4rem)] gap-0">
 
-<div className="flex flex-col w-64 border-r border-border bg-background h-full">
-
-
-<ConversationPanelList  currentId={workspaceId} />
-
-
-<DocumentPanelList workspaceId={parseInt(workspaceId)} />
-    </div>
 
     <div className="flex flex-1 flex-col h-[calc(100vh-4rem)] gap-0">
       {/* Header with Clear Button */}
@@ -90,7 +81,6 @@ const Page = ({ params }: PageProps) => {
     </div>
 
 
-</main>
   )
 }
 

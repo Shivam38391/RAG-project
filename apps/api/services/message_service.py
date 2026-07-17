@@ -30,3 +30,15 @@ class MessageService:
             db,
             conversation_id,
         )
+    
+
+    @staticmethod
+    def get_full_messages_history(
+        db: Session,
+        conversation_id: int,
+    ):
+
+        return MessageRepository.get_full_messages_history(
+            db,
+            conversation_id,
+        )
