@@ -60,16 +60,16 @@ const data = {
         <TerminalSquareIcon
         />
       ),
-      isActive: true,
+      isActive: false,
       items: [
-        {
-          title: "documents",
-          url: "/dashboard",
-        },
-        {
-          title: "New Chat",
-          url: "/dashboard/chat",
-        },
+        // {
+        //   title: "documents",
+        //   url: "/dashboard",
+        // },
+        // {
+        //   title: "New Chat",
+        //   url: "/dashboard/chat",
+        // },
 
       ],
     },
