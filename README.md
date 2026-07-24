@@ -77,8 +77,8 @@ ollama pull nomic-embed-text
 ### Step 2: Clone and Setup Project
 Clone the repository and navigate into the root directory:
 ```bash
-git clone https://github.com/username/rag-workspace.git
-cd rag-workspace
+git clone https://github.com/Shivam38391/RAG-project.git
+cd RAG-project
 ```
 
 
