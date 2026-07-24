@@ -81,6 +81,26 @@ git clone https://github.com/username/rag-workspace.git
 cd rag-workspace
 ```
 
+
+
+
+### Start vector database Chroma and verify
+
+```console
+cd ../..
+Start ChromaDB
+docker compose up -d
+
+
+```
+
+```console
+Verify:
+
+docker ps
+```
+
+
 ### Step 3: Backend Setup (FastAPI)
 Navigate to the API directory and install dependencies, then run migrations:
 ```bash
@@ -88,7 +108,7 @@ Navigate to the API directory and install dependencies, then run migrations:
 uv sync
 
 # Run the main application server
-uv run python apps/api/main.py
+uv run uvicorn apps.api.main:app --reload
 ```
 
 ### Step 4: Frontend Setup (Next.js)
@@ -102,6 +122,26 @@ npm install
 # Start the frontend development server
 npm run dev
 ```
+
+
+
+
+
+###  OR Start both Development simuntaneusly
+
+## Install the root dependency once:
+```javascript
+npm install
+```
+
+## Start the frontend and backend together:
+```javascript
+npm run dev
+```
+
+
+
+
 
 ## 🔑 Environment Variables
 Create a `.env` file in the root directory (`./`) and populate it with your credentials:

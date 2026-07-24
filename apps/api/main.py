@@ -21,7 +21,7 @@ Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI(
-    title="Financial AI Assistant"
+    title="Notebook AI Assistant"
 )
 
 
@@ -34,7 +34,7 @@ async def lifespan(app):
 app = FastAPI(lifespan=lifespan)
 
 
-app.include_router(chat_router)
+# app.include_router(chat_router)
 
 app.include_router(chat_routerV2)
 
@@ -53,7 +53,7 @@ app.include_router(
 def root():
     return {
         "status": "running",
-        "message": "Financial AI Assistant"
+        "message": "Notebook AI Assistant"
     }
 
 

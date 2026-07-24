@@ -24,73 +24,84 @@ router = APIRouter(
 )
 
 
-@router.post(
-    "",
-    response_model=ConversationResponse,
-)
-def create_conversation(
-    request: ConversationCreate,
-    db: Session = Depends(get_db),
-):
 
-    return ConversationService.create(
-        db,
-        request.title,
-    )
+# ==========old version of conversation
 
+# @router.post(
+#     "",
+#     response_model=ConversationResponse,
+# )
+# def create_conversation(
+#     request: ConversationCreate,
+#     db: Session = Depends(get_db),
+# ):
 
-@router.get(
-    "",
-    response_model=list[ConversationResponse],
-)
-def get_conversations(
-    db: Session = Depends(get_db),
-):
-
-    return ConversationService.get_all(db)
+#     return ConversationService.create(
+#         db,
+#         request.title,
+#     )
 
 
-@router.get(
-    "/{conversation_id}",
-    response_model=ConversationResponse,
-)
-def get_conversation(
-    conversation_id: int,
-    db: Session = Depends(get_db),
-):
+# @router.get(
+#     "",
+#     response_model=list[ConversationResponse],
+# )
+# def get_conversations(
+#     db: Session = Depends(get_db),
+# ):
 
-    conversation = ConversationService.get(
-        db,
-        conversation_id,
-    )
-
-    if conversation is None:
-
-        raise HTTPException(
-            status_code=404,
-            detail="Conversation not found",
-        )
-
-    return conversation
+#     return ConversationService.get_all(db)
 
 
-@router.delete(
-    "/{conversation_id}",
-)
-def delete_conversation(
-    conversation_id: int,
-    db: Session = Depends(get_db),
-):
+# @router.get(
+#     "/{conversation_id}",
+#     response_model=ConversationResponse,
+# )
+# def get_conversation(
+#     conversation_id: int,
+#     db: Session = Depends(get_db),
+# ):
 
-    ConversationService.delete(
-        db,
-        conversation_id,
-    )
+#     conversation = ConversationService.get(
+#         db,
+#         conversation_id,
+#     )
 
-    return {
-        "message": "Deleted",
-        "id": conversation_id
-    }
+#     if conversation is None:
+
+#         raise HTTPException(
+#             status_code=404,
+#             detail="Conversation not found",
+#         )
+
+#     return conversation
+
+
+# @router.delete(
+#     "/{conversation_id}",
+# )
+# def delete_conversation(
+#     conversation_id: int,
+#     db: Session = Depends(get_db),
+# ):
+
+#     conversation = ConversationService.delete(
+#         db,
+#         conversation_id,
+#     )
+
+#     if not conversation:
+
+#         raise HTTPException(
+#             status_code=404,
+#             detail="Conversation not found",
+#         )
+
+
+#     return {
+#         "message": "Deleted",
+#         "id": conversation_id
+#     }
 
 
 
