@@ -3,7 +3,7 @@
 An open-source, NotebookLM-style Retrieval-Augmented Generation (RAG) application built with FastAPI, Next.js, Ollama, and ChromaDB. This workspace provides a comprehensive platform for building advanced AI applications with local LLMs.
 
 ## ✨ Features
-*   **Workspace Isolation:** Organize documents and conversations into isolated workspaces.
+*   **Workspace Isolation:** Organize documents and conversations into isolated workspaces
 *   **Document Handling:** Support multiple PDF uploads and robust document ingestion pipelines.
 *   **RAG Core:** Utilizes ChromaDB for vector storage and retrieval.
 *   **Local LLM Integration:** Runs large language models locally via Ollama.
