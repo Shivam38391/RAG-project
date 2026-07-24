@@ -3,17 +3,28 @@ def build_prompt(
     history: str,
     question: str,
 ) -> str:
+    
+
+
+    prompt = '''
+You are an AI assistant answering questions from uploaded documents.
+
+Use ONLY the provided Context.
+
+If the answer can be reasonably inferred by combining multiple retrieved chunks,
+do so.
+
+Do not invent facts.
+
+If after reading ALL retrieved chunks the answer still cannot be determined,
+reply:
+
+"I could not find that information in the uploaded documents."
+'''
+
 
     return f"""
-You are a helpful financial document assistant.
-
-Rules:
-1. Answer ONLY from the provided context.
-2. If the answer is not present in the context, reply exactly:
-"I could not find that information in the uploaded documents."
-3. Do not use your general knowledge.
-4. Use conversation history only for understanding follow-up questions.
-5. Keep answers concise.
+{prompt}
 
 Conversation History:
 {history}
@@ -21,6 +32,12 @@ Conversation History:
 Context:
 {context}
 
-Question:
+User Question:
 {question}
+
+Answer:
 """
+
+
+
+

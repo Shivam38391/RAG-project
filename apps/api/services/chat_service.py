@@ -1,12 +1,9 @@
 from sqlalchemy.orm import Session
 import time
-
 from apps.api.services.message_service import MessageService
-
 from packages.rag.retriever import retrieve
 from packages.rag.prompt_builder import build_prompt
 from packages.llm.llm_service import LLMService
-
 
 class ChatService:
 
@@ -16,7 +13,6 @@ class ChatService:
         conversation_id: int,
         question: str,
     ):
-
         # Save user message
         MessageService.create(
             db=db,
@@ -24,7 +20,6 @@ class ChatService:
             role="user",
             content=question,
         )
-
         # Load conversation history
         messages = MessageService.get_messages(
             db,

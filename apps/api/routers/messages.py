@@ -20,7 +20,7 @@ def get_messages(
     db: Session = Depends(get_db),
 ):
 
-    return MessageService.get_messages(
+    return MessageService.get_full_messages_history(
         db,
         conversation_id,
     )

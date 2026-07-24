@@ -17,6 +17,7 @@ export interface Message {
 }
 
 export interface Source {
+  creator: string;
   documentId: string;
   filename: string;
   pageNumber?: number;
@@ -25,10 +26,12 @@ export interface Source {
 
 export interface ChatRequest {
   question: string;
-//   documentIds?: string[];
+  conversation_id: string; // Include your conversation_id if your backend handles chaining existing sessions,
+
+  //   documentIds?: string[];
 }
 
-export interface ChatResponse {
+export interface xChatResponse {
   answer: string;
   sources: Source[];
 }
@@ -40,6 +43,13 @@ export interface UploadResponse {
   status: "indexed" | "processing";
 }
 
+
+export interface workSpace {
+  id: string;
+  name: string;
+}
+
+
 // Settings types
 export interface AppSettings {
   backendUrl: string;
@@ -47,9 +57,8 @@ export interface AppSettings {
   theme: "light" | "dark" | "system";
 }
 
-
 export interface conversations {
   id: string;
   title: string;
-  created_at: string;
+  created_at?: string;
 }

@@ -1,0 +1,15 @@
+{
+  "name": "rag-project",
+  "private": true,
+  "scripts": {
+    "install:web": "npm --prefix apps/web install",
+    "backend": "uv run uvicorn apps.api.main:app --reload",
+    "frontend": "npm --prefix apps/web run dev",
+    "dev": "concurrently -n BACKEND,FRONTEND -c blue,green \"npm run backend\" \"npm run frontend\"",
+    "lint": "npm --prefix apps/web run lint",
+    "build:web": "npm --prefix apps/web run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

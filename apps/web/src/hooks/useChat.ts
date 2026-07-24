@@ -170,11 +170,19 @@ export function useChat(options?: UseChatOptions) {
         const request: ChatRequest = {
           question: query,
           // Include your conversation_id if your backend handles chaining existing sessions
-          // conversation_id: conversationId, 
+          conversation_id: conversationId, 
           // documentIds: options?.documentIds,
         };
 
-        const response = await api.askQuestion(request);
+
+//old api call
+        // const response = await api.askQuestion(request);
+
+
+        const response = await api.conversationChat({
+          conversationId,
+          question: query
+        });
 
         // Add assistant response
         const assistantMessage: Message = {

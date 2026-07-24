@@ -53,3 +53,40 @@ htmlcov/
 local_settings.py           
 # Flask stuff:
 instance/               
+
+
+
+# dont wana commit the data/chroma and uploads folder
+
+.venv/
+
+node_modules/
+
+__pycache__/
+
+*.pyc
+
+.env
+
+data/uploads/*
+
+data/chroma/*
+
+!.gitkeep
+
+.next/
+
+dist/
+
+coverage/
+
+
+
+
+data/
+
+    uploads/
+        .gitkeep
+
+    chroma/
+        .gitkeep

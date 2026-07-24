@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from apps.api.routers.upload import router as upload_router
 from fastapi.middleware.cors import CORSMiddleware
 from apps.api.routers.chat import router as chat_router
+from apps.api.routers.chatrouter import router as chat_routerV2
+
 from apps.api.db.database import Base, engine
 from apps.api.db.models import Base
 from apps.api.routers.conversations import (
@@ -11,12 +13,15 @@ from apps.api.routers.messages import router as message_router
 from contextlib import asynccontextmanager
 from packages.llm.ollama_client import llm
 
+from apps.api.routers.workspaces import (
+    router as workspace_router
+)
 
 Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI(
-    title="Financial AI Assistant"
+    title="Notebook AI Assistant"
 )
 
 
@@ -29,16 +34,26 @@ async def lifespan(app):
 app = FastAPI(lifespan=lifespan)
 
 
-app.include_router(chat_router)
+# app.include_router(chat_router)
+
+app.include_router(chat_routerV2)
+
+
+
+
 app.include_router(upload_router)
 app.include_router(conversation_router)
 app.include_router(message_router)
+
+app.include_router(
+    workspace_router
+)
 
 @app.get("/")
 def root():
     return {
         "status": "running",
-        "message": "Financial AI Assistant"
+        "message": "Notebook AI Assistant"
     }
 
 

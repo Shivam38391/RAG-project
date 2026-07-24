@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import type { Message } from "@/types";
 import { MessageSources } from "./sources";
 import { useState } from "react";
+import { MessageItem } from "../MessageItem";
 
 interface MessageListProps {
   messages: Message[];
@@ -28,58 +29,60 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
         </div>
       ) : (
         messages.map((message) => (
-          <div key={message.id}>
-            {/* Message Bubble */}
-            <div
-              className={cn(
-                "flex gap-3 mb-2",
-                message.role === "user" ? "justify-end" : "justify-start"
-              )}
-            >
-              {message.role === "assistant" && (
-                <div className="shrink-0 mt-1">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900">
-                    <Sparkles className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                  </div>
-                </div>
-              )}
+          // <div key={message.id}>
+          //   {/* Message Bubble */}
+          //   <div
+          //     className={cn(
+          //       "flex gap-3 mb-2",
+          //       message.role === "user" ? "justify-end" : "justify-start"
+          //     )}
+          //   >
+          //     {message.role === "assistant" && (
+          //       <div className="shrink-0 mt-1">
+          //         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900">
+          //           <Sparkles className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+          //         </div>
+          //       </div>
+          //     )}
 
-              <div
-                className={cn(
-                  "max-w-md lg:max-w-xl rounded-lg px-4 py-2 wrap-break-words",
-                  message.role === "user"
-                    ? "bg-blue-600 dark:bg-blue-700 text-white rounded-br-none"
-                    : "bg-muted text-foreground rounded-bl-none"
-                )}
-              >
-                <p className="text-sm md:text-base leading-relaxed">
-                  {message.content}
-                </p>
-              </div>
-            </div>
+          //     <div
+          //       className={cn(
+          //         "max-w-md lg:max-w-xl rounded-lg px-4 py-2 wrap-break-words",
+          //         message.role === "user"
+          //           ? "bg-blue-600 dark:bg-blue-700 text-white rounded-br-none"
+          //           : "bg-muted text-foreground rounded-bl-none"
+          //       )}
+          //     >
+          //       <p className="text-sm md:text-base leading-relaxed">
+          //         {message.content}
+          //       </p>
+          //     </div>
+          //   </div>
 
-            {/* Sources */}
-            {message.sources && message.sources.length > 0 && (
-              <div className="ml-11 mb-4">
-                <button
-                  onClick={() =>
-                    setExpandedSources(
-                      expandedSources === message.id ? null : message.id
-                    )
-                  }
-                  className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {expandedSources === message.id
-                    ? "Hide sources"
-                    : `Show sources (${message.sources.length})`}
-                </button>
+          //   {/* Sources */}
+          //   {message.sources && message.sources.length > 0 && (
+          //     <div className="ml-11 mb-4">
+          //       <button
+          //         onClick={() =>
+          //           setExpandedSources(
+          //             expandedSources === message.id ? null : message.id
+          //           )
+          //         }
+          //         className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+          //       >
+          //         {expandedSources === message.id
+          //           ? "Hide sources"
+          //           : `Show sources (${message.sources.length})`}
+          //       </button>
 
-                {expandedSources === message.id && (
-                  <MessageSources sources={message.sources} />
-                )}
-              </div>
-            )}
-          </div>
+          //       {expandedSources === message.id && (
+          //         <MessageSources sources={message.sources} />
+          //       )}
+          //     </div>
+          //   )}
+          // </div>
+
+          <MessageItem key={message.id} message={message} />
         ))
       )}
 

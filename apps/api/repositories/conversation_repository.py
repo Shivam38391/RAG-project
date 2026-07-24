@@ -58,3 +58,67 @@ class ConversationRepository:
         db.delete(conversation)
 
         db.commit()
+
+
+
+
+
+
+
+
+
+
+
+class ConversationRepositoryV2:
+
+    @staticmethod
+    def create(
+        db: Session,
+        workspace_id: int,
+        title: str,
+    ):
+        conversation = Conversation(
+            workspace_id=workspace_id,
+            title=title,
+        )
+
+        db.add(conversation)
+        db.commit()
+        db.refresh(conversation)
+
+        return conversation
+
+    @staticmethod
+    def get_by_workspace(
+        db: Session,
+        workspace_id: int,
+    ):
+        return (
+            db.query(Conversation)
+            .filter(
+                Conversation.workspace_id == workspace_id
+            )
+            .order_by(Conversation.created_at.desc())
+            .all()
+        )
+
+    @staticmethod
+    def get_by_id(
+        db: Session,
+        conversation_id: int,
+    ):
+        return (
+            db.query(Conversation)
+            .filter(
+                Conversation.id == conversation_id
+            )
+            .first()
+        )
+
+    @staticmethod
+    def delete(
+        db: Session,
+        conversation: Conversation,
+    ):
+        db.delete(conversation)
+        db.commit()

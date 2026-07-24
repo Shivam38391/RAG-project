@@ -14,7 +14,10 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { GalleryVerticalEndIcon, AudioLinesIcon, TerminalIcon, TerminalSquareIcon, BotIcon, BookOpenIcon, Settings2Icon, FrameIcon, PieChartIcon, MapIcon } from "lucide-react"
-import { SidebarHistoryWrapper } from "./SidebarHistoryWrapper"
+// import { SidebarHistoryWrapper } from "./SidebarHistoryWrapper"
+import { NavWorkspaces } from "./NavWorkspaces"
+import { CreateWorkspaceModal } from "./CreateWorkspaceModal"
+import { Separator } from "./ui/separator"
 
 // This is sample data.
 const data = {
@@ -57,16 +60,16 @@ const data = {
         <TerminalSquareIcon
         />
       ),
-      isActive: true,
+      isActive: false,
       items: [
-        {
-          title: "documents",
-          url: "/dashboard",
-        },
-        {
-          title: "chat",
-          url: "/dashboard/chat",
-        },
+        // {
+        //   title: "documents",
+        //   url: "/dashboard",
+        // },
+        // {
+        //   title: "New Chat",
+        //   url: "/dashboard/chat",
+        // },
 
       ],
     },
@@ -162,7 +165,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
         {/* <NavProjects projects={data.projects} /> */}
 
-        <SidebarHistoryWrapper />
+        {/* <SidebarHistoryWrapper /> */}
+
+
+
+        <CreateWorkspaceModal />
+
+        <Separator className="my-2" />
+
+        <NavWorkspaces />
       </SidebarContent>
       <SidebarFooter>
         {/* <NavUser user={data.user} /> */}

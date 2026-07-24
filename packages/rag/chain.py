@@ -1,37 +1,3 @@
-# from packages.rag.retriever import retrieve
-# from packages.llm.ollama_client import llm
-
-
-# def ask(question: str):
-
-#     docs = retrieve(question)
-
-#     context = "\n\n".join(
-#         [doc.page_content for doc in docs]
-#     )
-
-#     prompt = f"""
-# You are a financial document assistant.
-
-# Answer ONLY using the provided context.
-
-# If the answer is not in the context, say:
-# "I could not find that information."
-
-# Context:
-# {context}
-
-# Question:
-# {question}
-# """
-
-#     response = llm.invoke(prompt)
-
-#     print("LLM Response:", response)
-
-#     return response.content
-
-
 
 
 

@@ -33,6 +33,21 @@ class MessageRepository:
         return (
             db.query(Message)
             .filter(Message.conversation_id == conversation_id)
+            .order_by(Message.created_at.asc()).limit(8)
+            .all()
+        )
+
+
+
+    @staticmethod
+    def get_full_messages_history(
+        db: Session,
+        conversation_id: int,
+    ) -> list[Message]:
+
+        return (
+            db.query(Message)
+            .filter(Message.conversation_id == conversation_id)
             .order_by(Message.created_at.asc())
             .all()
         )
