@@ -67,7 +67,7 @@ __pycache__/
 *.pyc
 
 .env
-
+data/uploads/
 data/uploads/*
 
 data/chroma/*
@@ -81,12 +81,3 @@ dist/
 coverage/
 
 
-
-
-data/
-
-    uploads/
-        .gitkeep
-
-    chroma/
-        .gitkeep
