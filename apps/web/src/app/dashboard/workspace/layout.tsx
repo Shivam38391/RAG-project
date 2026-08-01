@@ -4,13 +4,16 @@ import { DocumentPanelList } from "@/components/DocumentPanelList";
 
 import { useParams } from "next/navigation";
 
+const normalizeParam = (value: string | string[] | undefined) =>
+  Array.isArray(value) ? value[0] ?? "" : value ?? "";
+
 export default function WorkspaceLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const params = useParams();
-  const workspaceId = params?.id; // Automatically grabs the slug if a child route has it
+  const workspaceId = normalizeParam(params?.id); // Automatically grabs the slug if a child route has it
 
   console.log("WorkspaceLayout params:", params);
 

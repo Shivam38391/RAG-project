@@ -11,11 +11,9 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { api } from "@/lib/api"
 import { UploadDocumentModal } from "./UploadDocumentModal"
+import type { Document as API_Document } from "@/types"
 
-// Interface matching your backend response payload
-interface WorkspaceDocument {
-  id: number
-  filename: string
+interface WorkspaceDocument extends API_Document {
   uploaded_at?: string // Optional metadata tracking fields
   pages_count?: number
 }
@@ -26,9 +24,9 @@ interface DocumentPanelListProps {
 
 export function DocumentPanelList({ workspaceId }: DocumentPanelListProps) {
   // Dynamic fetching based on the active workspace ID context
-  const { isPending, isError, data: documents } = useQuery<WorkspaceDocument[]>({
+  const { isPending, isError, data: documents } = useQuery<WorkspaceDocument[], Error>({
     queryKey: ["workspaceDocuments", workspaceId],
-    queryFn:  api.getdocumentsV2.bind(api, { workspaceId }) // Adjust to your preferred endpoint setup mapping
+    queryFn: () => api.getdocumentsV2({ workspaceId }) as Promise<WorkspaceDocument[]>,
   })
 
   return (

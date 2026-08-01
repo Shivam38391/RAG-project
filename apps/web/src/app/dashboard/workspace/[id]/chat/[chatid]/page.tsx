@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, use } from 'react' // Imported 'use' from react
+import { useEffect } from "react";
+import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { MessageList } from "@/components/chat/message-list";
 import { ChatInput } from "@/components/chat/chat-input";
@@ -9,20 +10,13 @@ import { Trash2, Loader2 } from "lucide-react";
 import ConversationPanelList from '@/components/ConversationPanelList';
 import { DocumentPanelList } from '@/components/DocumentPanelList';
 
-interface PageProps {
-  // params must be a Promise in newer Next.js versions
-  params: Promise<{
-    chatid: string;
-    id: string;
-  }>;
-}
+const normalizeParam = (value: string | string[] | undefined) =>
+  Array.isArray(value) ? value[0] ?? "" : value ?? "";
 
-const Page = ({ params }: PageProps) => {
-  // Unwrap the params Promise safely using React's use() hook
-  const unpackedParams = use(params);
-  const conversationId = unpackedParams.chatid;
-
-  const workspaceId = unpackedParams.id;
+const Page = () => {
+  const params = useParams();
+  const conversationId = normalizeParam(params?.chatid);
+  const workspaceId = normalizeParam(params?.id);
 
   const { 
     messages, 
